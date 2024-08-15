@@ -1,6 +1,7 @@
 const express = require('express');
 const {generate} = require("shortid");
 const app = express();
+app.use(express.json());
 
 const users = [
     {
@@ -133,4 +134,10 @@ app.get('/users',(req,res)=>{
 
     res.status(200);
     res.json(users);
+})
+
+app.post('/users', (req, res)=>{
+    const user = req.body;
+    users.push(user)
+    return res.json(users)
 })
