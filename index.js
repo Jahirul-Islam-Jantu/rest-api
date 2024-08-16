@@ -141,3 +141,8 @@ app.post('/users', (req, res)=>{
     users.push(user)
     return res.json(users)
 })
+app.delete('/users/:id',(req,res)=>{
+    const user = req.body.id;
+    users.splice(users.indexOf(user),1);
+    return res.json(users)
+})
