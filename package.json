@@ -13,6 +13,6 @@
     "shortid": "^2.2.16"
   },
   "scripts": {
-    "start": "nodemon ./index.js"
+    "start": "nodemon ./server.js"
   }
 }
