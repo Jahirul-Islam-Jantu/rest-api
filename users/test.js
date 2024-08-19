@@ -9,8 +9,8 @@ myDB.bulkCreate("user 7", 25, 4)
 myDB.bulkCreate("user 8", 18, 3)
 
 const tickets = myDB.find()
-console.log(tickets.length,"Total Tickets",tickets)
+// console.log(tickets.length,"Total Tickets",tickets)
 
 const winners = myDB.draw(3)
 
-console.log(winners.length, "winners",winners)
+// console.log(winners.length, "winners",winners)

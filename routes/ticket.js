@@ -37,7 +37,7 @@ router
         res.status(203).send()
     })
 
-router.post("/sell", (req, res) => {
+router.post('/sell', (req, res) => {
     const {username, price} = req.body;
     const ticket = db.create(username, price)
     res.status(201).json({message: "Ticket Created Successfully", ticket})
@@ -47,12 +47,12 @@ router.post('/bulk', (req, res) => {
     const tickets = db.bulkCreate(username, price, quantity)
     res.status(201).json({message: "Bulk tickets created successfully", tickets})
 })
-router.get("/draw", (req, res) => {
+router.get('/draw', (req, res) => {
     const winnerCount = req.query.wc ?? 3
     const winners = db.draw(winnerCount)
     res.status(200).json(winners)
 })
-router.get("/", (req, res) => {
+router.get('/all', (req, res) => {
     const tickets = db.find()
     res.status(200).json(tickets)
 })

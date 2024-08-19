@@ -68,13 +68,17 @@ class MyDB {
     /**
      * update tickets by username
      * @param {{username: string, price: number}} ticketBody
+     * @param{string} username
      * @return {Array<Ticket>}
      */
-    updateByUsername( ticketBody){
-        const tickets = this.tickets.findByUsername(username)
-        tickets.username = ticketBody.username ?? ticket.username
-        tickets.price = ticketBody.price ?? ticket.price
-        ticket.updatedAt = new Date()
+    updateByUsername( username, ticketBody){
+        const tickets = this.findByUsername(username)
+        tickets.forEach((ticket)=> {
+            ticket.username = ticketBody.username ?? ticket.username
+            ticket.price = ticketBody.price ?? ticket.price
+            ticket.updatedAt = new Date()
+        })
+        return tickets
     }
 
     /**
@@ -82,8 +86,8 @@ class MyDB {
      * @param {string} username
      */
     deleteByUsername(username){
-        const index = this.tickets.findByUsername(username)
-        if (username === username) {
+        const index = this.findByUsername(username)
+        if (username !== -1) {
             this.tickets.splice(username.length)
             return true
         } else {
