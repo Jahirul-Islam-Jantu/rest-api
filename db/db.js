@@ -66,6 +66,32 @@ class MyDB {
     }
 
     /**
+     * update tickets by username
+     * @param {{username: string, price: number}} ticketBody
+     * @return {Array<Ticket>}
+     */
+    updateByUsername( ticketBody){
+        const tickets = this.tickets.findByUsername(username)
+        tickets.username = ticketBody.username ?? ticket.username
+        tickets.price = ticketBody.price ?? ticket.price
+        ticket.updatedAt = new Date()
+    }
+
+    /**
+     * delete ticket by username
+     * @param {string} username
+     */
+    deleteByUsername(username){
+        const index = this.tickets.findByUsername(username)
+        if (username === username) {
+            this.tickets.splice(username.length)
+            return true
+        } else {
+            return false
+        }
+    }
+
+    /**
      *
      * @param {string} ticketId
      * @param {{username: string, price: number}} ticketBody
