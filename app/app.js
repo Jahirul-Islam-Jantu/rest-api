@@ -3,16 +3,17 @@ const express = require('express');
 const middleware = require('../middleware/middleware');
 const router = require("../routes/routes");
 const {notFound, serverError} = require("../errors/errors")
+const test = require("../users/test")
+
 
 
 const app = express();
-const myDB = require("../db/db");
-
 
 app.use(middleware)
 app.use(router)
 app.use(notFound)
 app.use(serverError)
+
 
 
 
