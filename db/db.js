@@ -41,23 +41,79 @@ class MyDB {
     /**
      * find ticket by id
      * @param {string} ticketId
+     * @return {Ticket} Ticket
      */
     findById(ticketId){
-        
-    }
-    // update single ticket
-    updateById(){
-
-    }
-    // delete single ticket
-    deleteById(){
-
-    }
-    // raffle draw
-    draw(){
-
+        const ticket = this.tickets.find(
+            /**
+             *
+             * @param{ticket} ticket
+             */
+            (ticket)=>{
+                ticket.id = ticketId;
+            })
+        return ticket;
     }
 
+    /**
+     * find tickets of given username
+     * @param {string} username
+     * @return {Array<Ticket>}
+     */
+    findByUsername(username){
+        const tickets = this.tickets.filter(
+            ticket => ticket.username === username
+        )
+        return tickets;
+    }
+
+    /**
+     *
+     * @param {string} ticketId
+     * @param {{username: string, price: number}} ticketBody
+     */
+    updateById(ticketId, ticketBody){
+        const ticket = this.findById(ticketId);
+        ticket.username = ticketBody.username ?? ticket.username
+        ticket.price = ticketBody.price ?? ticket.price
+        ticket.updatedAt = new Date()
+
+        return ticket;
+    }
+
+    /**
+     *
+     * @param {string} ticketId
+     */
+    deleteById(ticketId){
+        const index = this.tickets.findIndex(
+            ticket => ticket.id === ticketId
+        )
+        if (index > -1) {
+            this.tickets.splice(index, 1);
+            return true
+        } else {
+            return false
+        }
+    }
+
+    /**
+     * winner find
+     * @param {number} winnerCount
+     * @return {Array<Ticket>}
+     */
+    draw(winnerCount){
+        let indexes = new Array(winnerCount)
+        for (let i = 0; i < indexes.length; i++) {
+            let index = Math.floor(Math.random() * this.tickets.length)
+            while (indexes.includes(index)) {
+                index = Math.floor(Math.round()* this.tickets.length)
+            }
+            indexes.push(index)
+        }
+        const winners = indexes.map(index => this.tickets[index])
+        return winners;
+    }
 }
 
 const myDB = new MyDB();

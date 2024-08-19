@@ -6,7 +6,7 @@ const {notFound, serverError} = require("../errors/errors")
 
 
 const app = express();
-
+const myDB = require("../db/db");
 
 
 app.use(middleware)
