@@ -86,13 +86,12 @@ class MyDB {
      * @param {string} username
      */
     deleteByUsername(username){
-        const index = this.findByUsername(username)
-        if (username !== -1) {
-            this.tickets.splice(username.length)
-            return true
-        } else {
-            return false
-        }
+        const tickets = this.findByUsername(username)
+        tickets.forEach((ticket)=> {
+            this.deleteById(ticket.id)
+
+        })
+        return tickets
     }
 
     /**
