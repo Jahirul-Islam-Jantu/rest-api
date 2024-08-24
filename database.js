@@ -14,9 +14,14 @@ const personSchema = new Schema({
 
 
 })
+const Person = mongoose.model("Person", personSchema);
 
-mongoose.connect('mongodb://localhost:27017/database', {serverSelectionTimeoutMS: 1000,}).then(()=>{
+mongoose.connect('mongodb://localhost:27017/database', {serverSelectionTimeoutMS: 1000,}).then(async ()=>{
     console.log("database connected");
+    const person = new Person({})
+    await person.save();
+    console.log("Person saved successfully.")
+    console.log(person)
 }).catch(err=>{
     console.log(err);
 }).finally(()=>{
